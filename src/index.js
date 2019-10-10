@@ -42,7 +42,7 @@ function App() {
     <div className="App">
       <h3>Sign-in Sheet</h3>
       <Form add={addEntry} />
-      <table>
+      <table style={{ width: "100%" }}>
         <tr>
           <th>Customer</th>
           <th>Org/Building</th>

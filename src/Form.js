@@ -15,7 +15,7 @@ const Form = ({ add }) => {
     si("");
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{ paddingBottom: "10px" }}>
       <input
         type="text"
         value={n}
