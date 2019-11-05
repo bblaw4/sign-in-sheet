@@ -56,7 +56,7 @@ function App() {
 
   return (
     <div className="App">
-      <h3>Sign-in Sheet - Total Entries {entries.length}</h3>
+      <h3>Sign-in! Sheet - Total Entries {entries.length}</h3>
       <Form add={addEntry} />
       {isLoading ? (
         <p>Getting tickets from database....</p>
