@@ -32,18 +32,31 @@ function App() {
     }).then(res => setEntries([...entries, res.data]));
   };
 
+  const deleteEntry = id => {
+    axios
+      .delete(`https://dljs5.sse.codesandbox.io/${id}`)
+      .then(res => {
+        const deletedEntries = entries.filter(entry => entry._id !== id);
+        setEntries(deletedEntries);
+      })
+      .catch(e => console.log(e));
+  };
+
   const renderEntries = entries.map(e => (
     <tr key={e._id}>
       <td>{e.name}</td>
       <td>{e.org}</td>
       <td>{e.issue}</td>
       <td>{moment(e.date).format("MMMM Do, YYYY")}</td>
+      <td>
+        <button onClick={() => deleteEntry(e._id)}>Delete</button>
+      </td>
     </tr>
   ));
 
   return (
     <div className="App">
-      <h3>Sign-in Sheet</h3>
+      <h3>Sign-in Sheet - Total Entries {entries.length}</h3>
       <Form add={addEntry} />
       {isLoading ? (
         <p>Getting tickets from database....</p>
@@ -55,6 +68,7 @@ function App() {
               <th>Org/Building</th>
               <th>Current Issue</th>
               <th>Date</th>
+              <th>Options</th>
             </tr>
             {renderEntries}
           </tbody>
